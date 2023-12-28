@@ -11,8 +11,11 @@
 
 ### Get User Feed
 **Endpoint:** `/feed`
+
 **Method:** GET
+
 **Headers:** `Authorization: Bearer {user-jwt-token}`
+
 **Description:** Retrieves a list of jobs/projects for user identified in the authorization token
 
 **Request**
@@ -30,7 +33,7 @@
 	"endOfFeed": true,
 	"jobs": [
 		{
-			"id": 58695995,  // uniquely identifies job 
+			"id": 58695995,  /* uniquely identifies job */
 			"jobName": "Add Bluetooth to Corn Robot",
 			"jobType": "Project",
 			"employerName": "University of Delaware Agriculture",

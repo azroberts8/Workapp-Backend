@@ -10,13 +10,10 @@
 ## User Feed
 
 ### Get User Feed
-**Endpoint:** `/feed`
-
-**Method:** GET
-
-**Headers:** `Authorization: Bearer {user-jwt-token}`
-
-**Description:** Retrieves a list of jobs/projects for user identified in the authorization token
+**Endpoint:** `/feed`  
+**Method:** GET  
+**Headers:** `Authorization: Bearer {user-jwt-token}`  
+**Description:** Retrieves a list of jobs/projects for user identified in the authorization token  
 
 **Request**
  
@@ -28,35 +25,35 @@
 **Response**
 ```json
 {
-	"page": 0,
-	"count": 2,
-	"endOfFeed": true,
-	"jobs": [
-		{
-			"id": 58695995,  /* uniquely identifies job */
-			"jobName": "Add Bluetooth to Corn Robot",
-			"jobType": "Project",
-			"employerName": "University of Delaware Agriculture",
-			"employerId": 83028594,
-			"location": "Newark, DE",
-			"industry": "Agricultural Research",
-			"roleName": "Embedded Software Engineering",
-			"posted": "2023-06-30T12:53:37.738Z",
-			"expires": "2023-12-30T12:53:37.738Z"
-		},
-		{
-			"id": 58628990,
-			"jobName": "Embedded Software Summer Internship",
-			"jobType": "Internship",
-			"employerName": "Lutron Electronics",
-			"employerId": 39105603,
-			"location": "Austin, TX",
-			"industry": "Consumer Electronics",
-			"roleName": "Embedded Software Engineering",
-			"posted": "2023-06-30T12:53:37.738Z",
-			"expires": "2023-12-30T12:53:37.738Z"
-		}
-	]
+    "page": 0,
+    "count": 2,
+    "endOfFeed": true,
+    "jobs": [
+        {
+            "id": 58695995,  /* uniquely identifies job */
+            "jobName": "Add Bluetooth to Corn Robot",
+            "jobType": "Project",
+            "employerName": "University of Delaware Agriculture",
+            "employerId": 83028594,
+            "location": "Newark, DE",
+            "industry": "Agricultural Research",
+            "roleName": "Embedded Software Engineering",
+            "posted": "2023-06-30T12:53:37.738Z",
+            "expires": "2023-12-30T12:53:37.738Z"
+        },
+        {
+            "id": 58628990,
+            "jobName": "Embedded Software Summer Internship",
+            "jobType": "Internship",
+            "employerName": "Lutron Electronics",
+            "employerId": 39105603,
+            "location": "Austin, TX",
+            "industry": "Consumer Electronics",
+            "roleName": "Embedded Software Engineering",
+            "posted": "2023-06-30T12:53:37.738Z",
+            "expires": "2023-12-30T12:53:37.738Z"
+        }
+    ]
 }
 ```
 

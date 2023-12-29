@@ -24,11 +24,11 @@ All JSON responses implement the following structure:
 All IDs that uniquely identify users, schools, and jobs are 9 character, case insensitive strings where the first character identifies whether it is a **U**ser, **S**chool or **J**ob. The remaining 8 characters exist within the range 0-F (like hexidecimals) and identify the unique entity. *I will later provide regex for validating these IDs*
 
 ## Minimal Types
-Minimal types *do not* feature explicit API endpoints to access them. Rather, minimal 
+Minimal types *do not* feature explicit API endpoints to access them. Rather, minimal types are intended to be embedded as list items within other endpoints. 
 ### Minimal Applicant User
 ```json
 {
-    "userId": "u12345678"
+    "userId": "u12345678",
     "userType": "applicant",
     "username": "azroberts",
     "displayName": "Andrew Roberts",
@@ -76,6 +76,24 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 }
 ```
 
+## Full Types Without Endpoints
+### Full Job/Project Posting
+```json
+{
+	"jobId": "j12345678",
+	"jobName": "Embedded Software Summer Internship",
+	"jobType": "Internship",
+	"compensated": "hourly",
+	"compensation": 30.00,
+	"employer": {},  // minimal company/organization user
+	"locations": ["Austin, TX", "Coopersburg, PA"],
+	"workType": "Embedded Software Engineering",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+	"posted": "2023-06-30",
+	"expires": "2023-12-28"
+}
+```
+
 ## Authentication
 
 ## Profile
@@ -106,9 +124,15 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
         "locationPreferences": ["Austin, TX", "San Francisco, CA", "Tampa, FL"],
         "industryPreferences": ["consumer electronics", "aerospace", "software"],
         "rolePreferences": ["software engineering", "embedded firmware engineering"],
+        "webpages": [
+        	{
+        		"label": "Personal Portfolio",
+        		"link": "https://azroberts.com"
+        	}
+        ],
         "studies": [
             {
-                "school": {  // minimal school
+                "school": {  // minimal school example
                     "schoolId": "s12345678",
                     "schoolName": "University of Delaware",
                     "schoolType": "university",
@@ -125,7 +149,7 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
                 "enrolledSince": "2021-01-05",
                 "completed": "2024-12-15",
                 "privateDates": false,  // hides enrollment dates
-                "privateStudy": false  // hides the entire school from experience list
+                "privateStudy": false  // hides this school from experience list
             },
             {
                 "school": {},  // minimal school (highschool)
@@ -148,14 +172,41 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
                 "completed": "2023-08-15",
                 "duration": "11 weeks",
                 "ratingRecieved": 4.2,
-                "noteFromOrg": "Andrew performed alright during this internship program."
-                "privateExperience": false
+                "noteFromOrg": "Andrew performed alright during this internship program.",
+                "privateExperience": false  // hides the 
             }
         ],
         "externalWork": [],
         "externalProjects": [],
-        "hobbies": []
+        "hobbies": ["photography", "trail biking"]
     }
+}
+```
+
+### Full Organization Response
+```json
+{
+	"status": "success",
+	"message": "",
+	"payload": {
+		"userId": "u12345678",
+		"userType": "organization",
+		"username": "lutron",
+		"displayName": "Lutron Electronics",
+		"logo": "/link/to/company/logo",
+		"tagline": "Providing the highest quality lighting solutions",
+    	"rating": 4.8,
+    	"industry": "consumer electronics",
+    	"orgType": "private corporation",
+    	"organizationSize": 15000,
+    	"organizationSizeLabel": "medium",
+    	"webpage": "https://lutron.com",
+    	"bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    	"locations": ["Austin, Tx", "Philadelphia, PA", "Coopersburgh, PA"],
+    	"jobs": [
+    		{}  // minimal job/project postings
+    	]
+	}
 }
 ```
 
@@ -180,43 +231,17 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 **Response**
 ```json
 {
-    "status": "success",
-    "message": "",
-    "page": 0,
-    "count": 2,
-    "endOfFeed": true,
-    "jobs": [
-        {
-            "jobId": 58695995,  /* uniquely identifies job */
-            "jobName": "Add Bluetooth to Corn Robot",
-            "jobType": "Project",
-            "compensated": "none",
-            "compensation": 0.00,
-            "employerName": "University of Delaware Agriculture",
-            "employerId": 83028594,
-            "location": "Newark, DE",
-            "industry": "Agricultural Research",
-            "roleName": "Embedded Software Engineering",
-            "briefDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "posted": "2023-06-30T12:53:37.738Z",
-            "expires": "2023-12-30T12:53:37.738Z"
-        },
-        {
-            "jobId": 58628990,
-            "jobName": "Embedded Software Summer Internship",
-            "jobType": "Internship",
-            "compensated": "hourly",
-            "compensation": 30.00,
-            "employerName": "Lutron Electronics",
-            "employerId": 39105603,
-            "location": "Austin, TX",
-            "industry": "Consumer Electronics",
-            "roleName": "Embedded Software Engineering",
-            "breifDescription": "    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "posted": "2023-06-30T12:53:37.738Z",
-            "expires": "2023-12-30T12:53:37.738Z"
-        }
-    ]
+	"status": "success",
+	"message": "",
+	"payload": {
+		"page": 0,
+		"count": 2,
+		"endOfFeed": true,
+		"jobs": [
+			{},  // full job/project listings
+			{}
+		]
+	}
 }
 ```
 

@@ -173,7 +173,7 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
                 "duration": "11 weeks",
                 "ratingRecieved": 4.2,
                 "noteFromOrg": "Andrew performed alright during this internship program.",
-                "privateExperience": false  // hides the 
+                "privateExperience": false  // hides the experience from the users ublic profile
             }
         ],
         "externalWork": [],
@@ -205,7 +205,7 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
     	"locations": ["Austin, Tx", "Philadelphia, PA", "Coopersburgh, PA"],
     	"jobs": [
     		{}  // minimal job/project postings
-    	]
+        ]
 	}
 }
 ```
@@ -219,14 +219,15 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 **Endpoint:** `/feed`  
 **Method:** GET  
 **Headers:** `Authorization: Bearer {user-jwt-token}`  
-**Description:** Retrieves a list of jobs/projects for user identified in the authorization token  
+**Description:** Retrieves a list of jobs/projects for user identified in the authorization token. Considering the user has a watch list of *N* items, the first *N* items of their feed will be their watch list and proceeding items will be positions not yet seen by the user. If no `start` property is defined in the request, the response will be centered on the point in the feed where the watched positions end and new positions begin.  
 
 **Request**
  
 | Parameter | Required | Type | Default | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | `count` | no| int | 10 | Number of jobs/projects to fetch per page |
-| `page` | no | int | 0 | Used to request more projects; eg. count=10 page=0 returns first 10 projects, page=1 returns the next 10 |
+| `start` | no | int | arbitrary | Defines the feed index item to start at; eg. count=5 start=3 returns feed items 3, 4, 5, 6, and 7 |
+| `minimal` | no | bool | false | Indicates whether to use minimal or full job/project listings |
 
 **Response**
 ```json
@@ -234,18 +235,22 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 	"status": "success",
 	"message": "",
 	"payload": {
-		"page": 0,
-		"count": 2,
+		"start": 0,
+		"count": 5,
+        "watched": 3,  // indicates that the first 3 feed items are from watched list
 		"endOfFeed": true,
 		"jobs": [
-			{},  // full job/project listings
-			{}
+			{},  // full or minimal job/project listings
+			{},
+            {},
+            {},
+            {}
 		]
 	}
 }
 ```
 
-### User apply/dismiss job
+### User apply/dismiss or add job watch list
 **Endpoint:** `/feed`  
 **Method:** POST  
 **Headers:** `Authorization: Bearer {user-jwt-token}`  
@@ -255,7 +260,7 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 | Parameter | Required | Type | Default | Description |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | `jobId` | yes | int | - | Unique ID of the job position the user if applying to or dismissing |
-| `action` | yes | string | - | Indicates whether the user is applying to or dismissing the position; values are `apply` or `dismiss` |
+| `action` | yes | string | - | Indicates whether the user is applying to or dismissing the position; values are `apply`, `dismiss`, and `watch` |
 
 **Response**
 ```json

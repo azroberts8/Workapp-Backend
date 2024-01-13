@@ -80,17 +80,17 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 ### Full Job/Project Posting
 ```json
 {
-	"jobId": "j12345678",
-	"jobName": "Embedded Software Summer Internship",
-	"jobType": "Internship",
-	"compensated": "hourly",
-	"compensation": 30.00,
-	"employer": {},  // minimal company/organization user
-	"locations": ["Austin, TX", "Coopersburg, PA"],
-	"workType": "Embedded Software Engineering",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-	"posted": "2023-06-30",
-	"expires": "2023-12-28"
+    "jobId": "j12345678",
+    "jobName": "Embedded Software Summer Internship",
+    "jobType": "Internship",
+    "compensated": "hourly",
+    "compensation": 30.00,
+    "employer": {},  // minimal company/organization user
+    "locations": ["Austin, TX", "Coopersburg, PA"],
+    "workType": "Embedded Software Engineering",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "posted": "2023-06-30",
+    "expires": "2023-12-28"
 }
 ```
 
@@ -125,10 +125,10 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
         "industryPreferences": ["consumer electronics", "aerospace", "software"],
         "rolePreferences": ["software engineering", "embedded firmware engineering"],
         "webpages": [
-        	{
-        		"label": "Personal Portfolio",
-        		"link": "https://azroberts.com"
-        	}
+            {
+                "label": "Personal Portfolio",
+                "link": "https://azroberts.com"
+            }
         ],
         "studies": [
             {
@@ -186,27 +186,27 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 ### Full Organization Response
 ```json
 {
-	"status": "success",
-	"message": "",
-	"payload": {
-		"userId": "u12345678",
-		"userType": "organization",
-		"username": "lutron",
-		"displayName": "Lutron Electronics",
-		"logo": "/link/to/company/logo",
-		"tagline": "Providing the highest quality lighting solutions",
-    	"rating": 4.8,
-    	"industry": "consumer electronics",
-    	"orgType": "private corporation",
-    	"organizationSize": 15000,
-    	"organizationSizeLabel": "medium",
-    	"webpage": "https://lutron.com",
-    	"bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    	"locations": ["Austin, Tx", "Philadelphia, PA", "Coopersburgh, PA"],
-    	"jobs": [
-    		{}  // minimal job/project postings
+    "status": "success",
+    "message": "",
+    "payload": {
+        "userId": "u12345678",
+        "userType": "organization",
+        "username": "lutron",
+        "displayName": "Lutron Electronics",
+        "logo": "/link/to/company/logo",
+        "tagline": "Providing the highest quality lighting solutions",
+        "rating": 4.8,
+        "industry": "consumer electronics",
+        "orgType": "private corporation",
+        "organizationSize": 15000,
+        "organizationSizeLabel": "medium",
+        "webpage": "https://lutron.com",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "locations": ["Austin, Tx", "Philadelphia, PA", "Coopersburgh, PA"],
+        "jobs": [
+            {}  // minimal job/project postings
         ]
-	}
+    }
 }
 ```
 
@@ -232,21 +232,21 @@ Minimal types *do not* feature explicit API endpoints to access them. Rather, mi
 **Response**
 ```json
 {
-	"status": "success",
-	"message": "",
-	"payload": {
-		"start": 0,
-		"count": 5,
+    "status": "success",
+    "message": "",
+    "payload": {
+        "start": 0,
+        "count": 5,
         "watched": 3,  // indicates that the first 3 feed items are from watched list
-		"endOfFeed": true,
-		"jobs": [
-			{},  // full or minimal job/project listings
-			{},
+        "endOfFeed": true,
+        "jobs": [
+            {},  // full or minimal job/project listings
+            {},
             {},
             {},
             {}
-		]
-	}
+        ]
+    }
 }
 ```
 
